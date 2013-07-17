@@ -1,2 +1,28 @@
-<h1>Companies#new</h1>
-<p>Find me in app/views/companies/new.html.erb</p>
+<h1>New company</h1>
+
+<div>	
+    <%= form_for(@company) do |f| %>
+      <p>
+      	<%= f.label :name %>
+      	<%= f.text_field :name %>
+      </p>
+	
+	  <p>
+      	<%= f.label :url %>
+      	<%= f.text_field :url %>
+      </p>
+      
+      <p>
+      	<%= f.label :fbid, 'Facebook ID' %>
+      	<%= f.text_field :fbid %>
+      </p>
+
+       <p>
+      	<%= f.label :desc, 'Description' %>
+      	<%= f.text_field :desc %>
+      </p>
+      
+      <%= f.submit "Create company"%>
+    <% end %>
+
+</div>
