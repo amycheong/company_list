@@ -1,4 +1,8 @@
 CompanyList::Application.routes.draw do
+  root to: 'companies#show'
+  
+  match '/new',    to: 'companies#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
