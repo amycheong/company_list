@@ -1,4 +1,17 @@
 <h1>Companies#show</h1>
-<p>Find me in app/views/companies/show.html.erb</p>
+<p> <%= @message %> </p>
+<p>
+	<ul>
+      	<% @companies.each do |company|%>
+			<li>
+				<%= company.name  %>, 
+				<%= company.url  %>, 
+				<%= company.fbid  %>, 
+				<%= company.desc %> 
+			</li> 
+		<% end %>     
+	</ul>
+
+</p>
 
 <p><%= link_to "Register here", new_path %> </p>
