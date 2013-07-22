@@ -1,3 +1,5 @@
+
+
 class Company < ActiveRecord::Base
   attr_accessible :desc, :fbid, :name, :url
   
@@ -11,5 +13,7 @@ class Company < ActiveRecord::Base
 					:uniqueness => { :case_sensitive => false }
   validates :fbid, 	:presence 	=> true
   validates :desc, 	:presence 	=> true
+  
 
+    
 end					 	

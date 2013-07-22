@@ -1,3 +1,7 @@
+require 'rubygems'
+require 'json'
+require 'net/http'
+
 class CompaniesController < ApplicationController
   
   def new
@@ -6,17 +10,30 @@ class CompaniesController < ApplicationController
   
   def create 
   	@company = Company.new(params[:company])
-  	if @company.save 
-  		@message = "New company created"
-  		render 'show'
+  	
+  	uri = URI("http://graph.facebook.com/" + @company.fbid)
+  	data = Net::HTTP.get(uri)
+  	username = JSON.parse(data)['username']
+  	if username
+  	 	if @company.name.downcase == username.downcase
+  			if @company.save 
+  				@message = "New company created."
+  				redirect_to root_path
+  			else 
+  				@message = "Company create attempt failed. Please try again."
+ 				render 'new' 
+  			end 
+  		else 
+  			@message = "Company create attempt failed. Invalid facebook id."
+ 			render 'new' 
+  		end
   	else 
-  		@message = "No company created"
-  		render 'new' 
-  	end 
-  	 	
+  		@message = "Company create attempt failed. No such facebook id."
+  		render 'new'  		 	
+  	end  	  	 	
   end 
   
-  def show
+  def index
   	@companies = Company.all
   end
 end

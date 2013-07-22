@@ -1,7 +1,7 @@
 CompanyList::Application.routes.draw do
   resources :companies
   
-  root to: 'companies#show'
+  root to: 'companies#index'
   
   match '/new',    to: 'companies#new'
 
