@@ -36,7 +36,7 @@ describe "Companies" do
   		describe "correct facebook id" do               
         	#validate fbid
 			it "should validate fbid" do   			
-      			WebMock.should have_requested(:get, "http://graph.facebook.com/")
+      			WebMock.should have_requested(:get, "https://graph.facebook.com/pepsi")
       			Company.validate_fbid('pepsi')['username'].should == "pepsi"
       			
     		end
