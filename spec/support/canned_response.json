@@ -1,0 +1,22 @@
+HTTP/1.1 200 OK
+ 
+{
+	"about": "Welcome To Pepsi Global!",
+   "category": "Food/beverages",
+   "is_published": true,
+   "talking_about_count": 176273,
+   "username": "pepsi",
+   "website": "http://www.pepsi.com/",
+   "were_here_count": 0,
+   "id": "339150749455906",
+   "name": "Pepsi",
+   "link": "http://www.facebook.com/pepsi",
+   "likes": 17221345,
+   "cover": {
+      "cover_id": 545370555500590,
+      "source": "http://sphotos-g.ak.fbcdn.net/hphotos-ak-ash3/s720x720/942740_545370555500590_46289134_n.jpg",
+      "offset_y": 0,
+      "offset_x": 47
+   }    
+    
+}

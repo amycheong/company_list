@@ -1,7 +1,6 @@
-require 'webmock/rspec'
 require 'spec_helper'
 
-
+		
 describe "Companies" do
 
   subject { page }
@@ -21,39 +20,52 @@ describe "Companies" do
   	before { visit new_path }
   	let(:submit){ "Create company" }
  
-   	describe "with invalid information and wrong fbid" do 
-		stub_request(:any, "https://graph.facebook.com/examplecompany").with(:body => /.+/ , :headers => { 'username' => 'examplecompany' })
-		uri = URI.parse("http://http://graph.facebook.com/examplecompany")
-		req = Net::HTTP::Post.new(uri.path)
-
-		  		         
-  		it "should not create company" do 
-  		req['username'] ='examplecompanywrong'
-  			expect { click_button submit }.not_to change(Company, :count)
-  		end
-  	end
   	
-  	describe "with valid information and correct fbid" do 
+  	describe "with valid information" do 
   		before do 
   			fill_in "Name",      with: "Example Company"
   			fill_in "Url",   	 with: "www.company.com"
-  			fill_in "ID",      	 with: "examplecompany"
-  			fill_in "Desc",      with: "Computer company"
+  			fill_in "ID",      	 with: "pepsi"
+  			fill_in "Desc",      with: "Computer company"  			
   		end
   		
-   		it "should create a company" do 
-  			expect { click_button submit }.to change(Company, :count).by(1)
-  		end
-  	end 
+  		before(:each) do
+    		stub_request(:get, "https://graph.facebook.com/pepsi").to_return(:body => { 'username' => 'pepsi'})
+  		end 
+		
+  		describe "correct facebook id" do               
+        	#validate fbid
+			it "should validate fbid" do   			
+      			WebMock.should have_requested(:get, "http://graph.facebook.com/")
+      			Company.validate_fbid('pepsi')['username'].should == "pepsi"
+      			
+    		end
+		
+        	#it "should create a company" do 
+              #  expect { click_button submit }.to change(Company, :count).by(1)
+        	#end
+                                        
+    	end
+  		
+  		#describe "wrong facebook id" do   			  			
+			#validate fbid
+  			#it "should not create a company" do   				
+  				#expect { click_button submit }.not_to change(Company, :count)
+  			#end
+  		#end
+
+  	end
+  	 	
+  	#describe "with invalid information" do 
+  	  			  		         
+  		#it "should not create company" do   		
+  			#expect { click_button submit }.not_to change(Company, :count)
+  		#end
+  	#end
+  	  	 
   end 
   
-  
-  
- 
-  
-  
-  
-  
+    
   
 end
 

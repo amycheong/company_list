@@ -27,7 +27,7 @@ class CompaniesController < ApplicationController
   			@message = "Company create attempt failed. Invalid facebook id."
  			render 'new' 
   		end
-  	else 
+  	else  
   		@message = "Company create attempt failed. No such facebook id."
   		render 'new'  		 	
   	end  	  	 	
