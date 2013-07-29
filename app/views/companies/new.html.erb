@@ -1,11 +1,7 @@
 <h1>New Company</h1>
 <p> <%= @message %> </p>
 <div>	
-	<ul>
-	<% @company.errors.full_messages.each do |msg| %>
-      	<li>* <%= msg %></li>
-    <% end %>
-    </ul>    
+  
     <%= form_for(@company) do |f| %>
       <p>
       	<%= f.label :name %>

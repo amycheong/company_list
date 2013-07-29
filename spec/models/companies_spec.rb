@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Company do
   before do
     @company = Company.new(name: "Example Company", url: "www.company.com", 
-    					fbid: "companyid", desc: "Computer company")
+    					fbid: "pepsi", desc: "Computer company")
   end
   
   subject { @company }
@@ -54,6 +54,29 @@ describe Company do
            @company.should be_valid
         end
      end
+  end
+  
+  context "#before save" do 
+  	it 'calls "validate_fbid" for validation' do 
+  	  	@company.should_receive(:validate_fbid)
+  	  	@company.validate_fbid
+  	end
+  	
+  	#fb validation
+  	describe "when fbid is invalid" do 
+  		it "should be invalid" do 
+  			Company.stub(:validate_fbid).and_return('wrongid')
+  			@company.validate_fbid.should_not == 'wrongid'
+  		end
+  	end
+  	
+  	describe "when fbid is valid" do 
+  		it "should be valid" do 
+  			Company.stub(:validate_fbid).and_return('pepsi')
+  			@company.validate_fbid.should == 'pepsi'
+  		end
+  	end
+  	
   end
   
   

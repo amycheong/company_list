@@ -23,45 +23,28 @@ describe "Companies" do
   	
   	describe "with valid information" do 
   		before do 
-  			fill_in "Name",      with: "Example Company"
+  			fill_in "Name",      with: "Example company"
   			fill_in "Url",   	 with: "www.company.com"
   			fill_in "ID",      	 with: "pepsi"
-  			fill_in "Desc",      with: "Computer company"  			
+  			fill_in "Desc",      with: "Company desc"  			
   		end
-  		
-  		before(:each) do
-    		stub_request(:get, "https://graph.facebook.com/pepsi").to_return(:body => { 'username' => 'pepsi'})
-  		end 
+		let(:company){ Company.new(name:'Example Company', url: 'www.company.com', fbid: 'pepsi', desc: 'Company desc' )}
 		
-  		describe "correct facebook id" do               
-        	#validate fbid
-			it "should validate fbid" do   			
-      			WebMock.should have_requested(:get, "https://graph.facebook.com/pepsi")
-      			Company.validate_fbid('pepsi')['username'].should == "pepsi"
-      			
-    		end
-		
-        	#it "should create a company" do 
-              #  expect { click_button submit }.to change(Company, :count).by(1)
-        	#end
-                                        
-    	end
-  		
-  		#describe "wrong facebook id" do   			  			
-			#validate fbid
-  			#it "should not create a company" do   				
-  				#expect { click_button submit }.not_to change(Company, :count)
-  			#end
-  		#end
-
-  	end
+  		it "should create a company after validation" do
+  		   #Company.stub(:validate_fbid).and_return('pepsi')
+  		   #company.fbid.should == 'pepsi'	 
+           expect { company.save }.to change(Company, :count).by(1)
+           #company.save.should == true
+       	end
+        	
+   	end
   	 	
-  	#describe "with invalid information" do 
+  	describe "with invalid information" do 
   	  			  		         
-  		#it "should not create company" do   		
-  			#expect { click_button submit }.not_to change(Company, :count)
-  		#end
-  	#end
+  		it "should not create company" do   		
+  			expect { click_button submit }.not_to change(Company, :count)
+  		end
+  	end
   	  	 
   end 
   

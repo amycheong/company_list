@@ -3,6 +3,7 @@ require 'net/http'
 require 'rubygems'
 
 class Company < ActiveRecord::Base
+	before_save :validate_fbid
 
   	attr_accessible :desc, :fbid, :name, :url
   
@@ -18,12 +19,15 @@ class Company < ActiveRecord::Base
   	validates :desc, 	:presence 	=> true
   	
   	
- 
-  	def self.validate_fbid(fbid, format = :json)
-  		uri = URI.parse("https://graph.facebook.com/#{fbid}")
+	def validate_fbid
+  		uri = URI("http://graph.facebook.com/" + fbid)
   		data = Net::HTTP.get(uri)
-  		return JSON.parse(data['username'])
-   		 
+  		name = JSON.parse(data)['name'] 
+  	
+  		if fbid.downcase != name.downcase
+  			return false 
+  		else
+  			"#{name.downcase}"
+  		end
   	end
-
 end					 	
