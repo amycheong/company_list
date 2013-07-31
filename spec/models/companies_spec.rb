@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Company do
   before do
     @company = Company.new(name: "Example Company", url: "www.company.com", 
-    					fbid: "pepsi", desc: "Computer company")
+    					fbid: "pepsi", desc: "Computer company", likes: 1234)
   end
   
   subject { @company }
@@ -65,18 +65,15 @@ describe Company do
   	#fb validation
   	describe "when fbid is invalid" do 
   		it "should be invalid" do 
-  			Company.stub(:validate_fbid).and_return('wrongid')
-  			@company.validate_fbid.should_not == 'wrongid'
+  			@company.stub(:validate_fbid).and_return(false)  			
   		end
   	end
   	
   	describe "when fbid is valid" do 
   		it "should be valid" do 
-  			Company.stub(:validate_fbid).and_return('pepsi')
-  			@company.validate_fbid.should == 'pepsi'
+  			@company.stub(:validate_fbid).and_return(true)  			
   		end
-  	end
-  	
+  	end  	
   end
   
   

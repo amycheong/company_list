@@ -5,10 +5,13 @@
 	<ul>
       	<% @companies.each do |company|%>
 			<li>
-				<%= company.name  %>, 
+				<%= company.name.titleize  %>, 
 				<%= company.url  %>, 
 				<%= company.fbid  %>, 
-				<%= company.desc %> 
+				<%= company.desc %>,
+				<%= company.likes %>  
+				
+				END
 			</li> 
 		<% end %>     
 	</ul>

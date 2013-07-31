@@ -1,3 +1,4 @@
+require 'delayed_job'
 
 
 class CompaniesController < ApplicationController
@@ -11,6 +12,7 @@ class CompaniesController < ApplicationController
   		
   		if company.save 
   			@message = "New company created."
+  			company.update_likes
   			redirect_to root_path
   		else 
   			@message = "Company create attempt failed. Please try again."
@@ -19,7 +21,7 @@ class CompaniesController < ApplicationController
   end 
   
   def index
-  		@companies = Company.all
+  		@companies = Company.toplikes
   end
  
 end

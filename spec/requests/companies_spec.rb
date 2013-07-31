@@ -28,13 +28,10 @@ describe "Companies" do
   			fill_in "ID",      	 with: "pepsi"
   			fill_in "Desc",      with: "Company desc"  			
   		end
-		let(:company){ Company.new(name:'Example Company', url: 'www.company.com', fbid: 'pepsi', desc: 'Company desc' )}
+		let(:company){ Company.new(name:'Pepsi', url: 'www.company.com', fbid: 'pepsi', desc: 'Company desc', likes: 1234 )}
 		
-  		it "should create a company after validation" do
-  		   #Company.stub(:validate_fbid).and_return('pepsi')
-  		   #company.fbid.should == 'pepsi'	 
+  		it "should create a company after validation" do 
            expect { company.save }.to change(Company, :count).by(1)
-           #company.save.should == true
        	end
         	
    	end
