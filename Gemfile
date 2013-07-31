@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'delayed_job_active_record'
 gem 'daemons'
+
   
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -34,5 +35,5 @@ end
 
 group :production do
   gem 'pg', '0.12.2'
+  
 end
-
