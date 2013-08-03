@@ -190,7 +190,7 @@ DEPENDENCIES
   delayed_job_active_record
   factory_girl_rails (= 4.1.0)
   foreman
-  jquery-rails (= 2.0.2)
+  jquery-rails (~> 2.0.0)
   pg (= 0.12.2)
   rails (= 3.2.13)
   rspec-rails (= 2.11.0)
