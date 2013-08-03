@@ -1,2 +1,2 @@
 
-worker:  bundle exec rake jobs:work
+worker: rake jobs:work
