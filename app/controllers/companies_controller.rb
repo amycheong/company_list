@@ -4,7 +4,8 @@ require 'delayed_job'
 class CompaniesController < ApplicationController
   
   def new
-  		@company = Company.new 
+  		@company = Company.new
+  		 
   end
   
   def create 
@@ -22,6 +23,7 @@ class CompaniesController < ApplicationController
   
   def index
   		@companies = Company.toplikes
+  		
   end
  
 end

@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731074251) do
+ActiveRecord::Schema.define(:version => 20130803030034) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "url"
     t.string   "fbid"
     t.string   "desc"
+    t.integer  "likes"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "likes"
   end
 
   create_table "delayed_jobs", :force => true do |t|

@@ -5,7 +5,9 @@ gem 'bootstrap-sass', '2.1'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'delayed_job_active_record'
 gem 'daemons'
-
+gem 'whenever', :require => false
+gem 'capistrano'
+gem 'foreman'
   
 group :development, :test do
   gem 'sqlite3', '1.3.5'
@@ -15,6 +17,7 @@ end
 
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'capistrano-rails', '~> 0.0.7'
 end 
 
 # Gems used only for assets and not required

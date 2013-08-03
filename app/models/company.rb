@@ -17,8 +17,8 @@ class Company < ActiveRecord::Base
   	validates :name, 	:presence 	=> true
 					 
   	validates :url,  	:presence 	=> true,
-					:format 	=> { :with => url_regex },
-					:uniqueness => { :case_sensitive => false }
+						:format 	=> { :with => url_regex },
+						:uniqueness => { :case_sensitive => false }
   	validates :fbid, 	:presence 	=> true
   	validates :desc, 	:presence 	=> true
   	
@@ -28,7 +28,7 @@ class Company < ActiveRecord::Base
   		data = Net::HTTP.get(uri)
   		fbname = JSON.parse(data)['name'] 
   		
-  		if fbname.downcase =~ /#{name.downcase}/   			 			
+  		if !fbname.nil? && fbname.downcase =~ /#{name.downcase}/   			 			
   			return true 
   		else
   			return false
@@ -39,6 +39,17 @@ class Company < ActiveRecord::Base
   		uri = URI("http://graph.facebook.com/" + fbid)
   		data = Net::HTTP.get(uri)
   		update_attribute(:likes,JSON.parse(data)['likes']) 		
+  	end
+  	
+  	def self.update_all_likes
+  		$i = 0
+  		while $i < Company.count do
+  			company = Company.find($i+1)
+  			uri = URI("http://graph.facebook.com/" +company.fbid)
+  			data = Net::HTTP.get(uri)
+  			company.update_attribute(:likes, JSON.parse(data)['likes'])
+   			$i +=1
+		end		
   	end
   	
   	handle_asynchronously :update_likes  	
