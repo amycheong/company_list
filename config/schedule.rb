@@ -23,7 +23,8 @@ env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 
 
 every 1.minute do
-  runner "Company.update_all_likes", environment: 'development'
+  runner "Company.update_all_likes"
 end
 
 #every 1.day, :at => '00:00 am' 
+#, environment: 'development'
