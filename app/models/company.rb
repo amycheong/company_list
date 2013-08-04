@@ -28,7 +28,7 @@ class Company < ActiveRecord::Base
   		data = Net::HTTP.get(uri)
   		fbname = JSON.parse(data)['name'] 
   		
-  		if !fbname.nil? && fbname.downcase =~ /#{name.downcase}/   			 			
+  		if !fbname.nil? && fbname.gsub(/\s+/, "").downcase =~ /#{name.downcase}/   			 			
   			return true 
   		else
   			return false
