@@ -12,6 +12,7 @@ describe Company do
   it { should respond_to(:url) }
   it { should respond_to(:fbid) }
   it { should respond_to(:desc) }
+  it { should respond_to(:likes) }
   
   
  #when attributes not present 
@@ -57,7 +58,7 @@ describe Company do
   end
   
   context "#before save" do 
-  	it 'calls "validate_fbid" for validation' do 
+  	it 'calls validate_fbid method for validation' do 
   	  	@company.should_receive(:validate_fbid)
   	  	@company.validate_fbid
   	end
@@ -76,6 +77,13 @@ describe Company do
   	end  	
   end
   
+  
+  context "#after save" do 
+  	it "calls update_likes method" do 
+  		expect { @company.save }.to respond_to{ @company.should_receive(:update_likes) }  		
+  		@company.likes.should_not be_nil		
+  	end
+  end
   
  
 end

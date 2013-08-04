@@ -1,7 +1,10 @@
 <h1>Companies</h1>
 <p>Is your page missing from the list? Click <%= link_to "here", new_path %>  to add it. </p>
-
-<p>
+<% if flash[:notice]  %>
+	<p id="notice" ><%= flash[:notice] %></p>
+<% end %>
+<p> 
+<% if @companies.count != 0 %>
 	<table>
 		<% i = 0 %>
 		<tr>
@@ -14,11 +17,16 @@
 			<tr>
 				<td><%= i+=1 %></td>
 				<td><%= company.name.titleize %></td> 
-				<td><%= link_to company.likes, "www.facebook.com/"+company.fbid %></td>
+				<td><% if company.likes != nil %>
+						<%= link_to company.likes, "www.facebook.com/"+company.fbid %></td>
+					<% else %>
+						<%= link_to 0, "www.facebook.com/"+company.fbid %></td>
+					<% end %>
 				<td><%= company.desc %></td>  	  				
 			</tr> 
 		<% end %>     
 	</table>
+<% end %>	
 </p>
 
 

@@ -22,7 +22,7 @@ set :output, "#{path}/log/cron.log"
 
 
 every 1.day do
-  runner "Company.update_all_likes"
+  runner "Company.update_all_likes" 
 end
 
 #every 1.day, :at => '00:00 am' 

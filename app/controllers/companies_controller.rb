@@ -12,12 +12,10 @@ class CompaniesController < ApplicationController
   		company = Company.new(params[:company])
   		
   		if company.save 
-  			@message = "New company created."
   			company.update_likes
-  			redirect_to root_path
+  			redirect_to root_path, :notice =>"New company created."
   		else 
-  			@message = "Company create attempt failed. Please try again."
- 			redirect_to new_path 
+ 			redirect_to new_path, :notice =>"Company create attempt failed. Please try again." 
   		end  	  	 	
   end 
   

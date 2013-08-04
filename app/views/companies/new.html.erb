@@ -1,5 +1,9 @@
+<% if flash[:notice]  %>
+	<p id="notice" ><%= flash[:notice] %></p>
+<% end %>
+
 <h1>New Company</h1>
-<p> <%= @message %> </p>
+
 <div>	
   
     <%= form_for(@company) do |f| %>
@@ -26,5 +30,7 @@
       
       <%= f.submit "Create company"%>
     <% end %>
+    
+    <p><%= link_to 'Back', root_path %></p>
 
 </div>
