@@ -26,7 +26,10 @@ class Company < ActiveRecord::Base
 	def validate_fbid
   		uri = URI("http://graph.facebook.com/" + fbid)
   		data = Net::HTTP.get(uri)
-  		fbname = JSON.parse(data)['name'] 
+  		fbname = JSON.parse(data)['username'] 
+  		if fbname.nil?
+  			fbname = JSON.parse(data)['name'] 
+  		end 
   		
   		if !fbname.nil? && fbname.gsub(/\s+/, "").downcase =~ /#{name.downcase}/   			 			
   			return true 

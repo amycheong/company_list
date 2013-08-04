@@ -18,10 +18,11 @@
 				<td><%= i+=1 %></td>
 				<td><%= company.name.titleize %></td> 
 				<td><% if company.likes != nil %>
-						<%= link_to company.likes, "www.facebook.com/"+company.fbid %></td>
+						<%= link_to company.likes, "http://www.facebook.com/"+company.fbid %>
 					<% else %>
-						<%= link_to 0, "www.facebook.com/"+company.fbid %></td>
+						<%= link_to 0, "www.facebook.com/"+company.fbid %>
 					<% end %>
+				</td>	
 				<td><%= company.desc %></td>  	  				
 			</tr> 
 		<% end %>     
