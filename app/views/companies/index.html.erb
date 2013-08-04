@@ -1,24 +1,27 @@
-<h1>Companies#show</h1>
-<p> <%= @message %> </p>
+<h1>Companies</h1>
+<p>Is your page missing from the list? Click <%= link_to "here", new_path %>  to add it. </p>
 
 <p>
-	<ul>
+	<table>
+		<% i = 0 %>
+		<tr>
+			<th>No. </th>
+			<th>Name</th> 
+			<th>FB Likes</th>
+			<th>Description</th>  				
+		</tr> 
       	<% @companies.each do |company|%>
-			<li>
-				<%= company.name.titleize  %>, 
-				<%= company.url  %>, 
-				<%= company.fbid  %>, 
-				<%= company.desc %>,
-				<%= company.likes %>  
-				
-				[]
-			</li> 
+			<tr>
+				<td><%= i+=1 %></td>
+				<td><%= company.name.titleize %></td> 
+				<td><%= link_to company.likes, "www.facebook.com/"+company.fbid %></td>
+				<td><%= company.desc %></td>  	  				
+			</tr> 
 		<% end %>     
-	</ul>
-
+	</table>
 </p>
 
 
 ￼
 
-<p><%= link_to "Register here", new_path %> </p>
+

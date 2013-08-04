@@ -19,10 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 set :output, "#{path}/log/cron.log"
-env :PATH, '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin'
 
 
-every 1.minute do
+every 1.day do
   runner "Company.update_all_likes"
 end
 
